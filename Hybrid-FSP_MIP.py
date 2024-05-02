@@ -32,7 +32,7 @@ machines_per_stage = {0: 2, 1: 1}
 mdl = Model('Mixed Flow Shop Scheduling')
 
 # Define the decision variables
-C = {(j, i): mdl.continuous_var(name='C_{}_{}'.format(j, i)) for j in range(num_jobs) for i in range(num_stages)}
+C = {(j, i): mdl.integer_var(name='C_{}_{}'.format(j, i)) for j in range(num_jobs) for i in range(num_stages)}
 w = {(j, i, k): mdl.binary_var(name='w_{}_{}_{}'.format(j, i, k)) for j in range(num_jobs) for i in range(num_stages) for k in range(machines_per_stage[i])}
 x = {(j, j_prime, i): mdl.binary_var(name='x_{}_{}_{}'.format(j, j_prime, i)) for j in range(num_jobs) for j_prime in range(num_jobs) for i in range(num_stages)}
 
